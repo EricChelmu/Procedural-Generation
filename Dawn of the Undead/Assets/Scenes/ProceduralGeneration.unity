@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lsystem: {fileID: 1851779731}
-  prefab: {fileID: 919132149155446097, guid: 854f3fa0886badd4ba09c8832090240e, type: 3}
+  prefab: {fileID: 5054356181449942831, guid: c0fae465f34b3334f9dd4750e96606f2, type: 3}
   lineMaterial: {fileID: 2100000, guid: 2f4c0154fb70b3648a8ebbc0d08d0ac3, type: 2}
 --- !u!4 &1402414596
 Transform:
@@ -478,7 +478,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 68c31856c21f99d49ba9b878476d89af, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 1
+  iterationLimit: 2
 --- !u!4 &1851779732
 Transform:
   m_ObjectHideFlags: 0
