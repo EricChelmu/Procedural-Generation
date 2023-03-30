@@ -2,21 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ProceduralGeneration.SimpleVisualizer;
 
 namespace ProceduralGeneration
 {
-    public class SimpleVisualizer : MonoBehaviour
+    public class Visualizer : MonoBehaviour
     {
         public LSystemGenerator lsystem;
         List<Vector3> positions = new List<Vector3>();
-        public GameObject prefab;
-        public Material lineMaterial;
+
+        public RoadHelper roadHelper;
 
         private int length = 8;
         private float angle = 90;
 
-        public int Length 
-        { 
+        public int Length
+        {
             get
             {
                 if (length > 0)
@@ -28,7 +29,7 @@ namespace ProceduralGeneration
                     return 1;
                 }
             }
-            set => length = value; 
+            set => length = value;
         }
 
         private void Start()
@@ -76,7 +77,7 @@ namespace ProceduralGeneration
                     case EncodingLetters.draw:
                         tempPosition = currentPosition;
                         currentPosition += direction * Length;
-                        DrawLine(tempPosition, currentPosition, Color.blue);
+                        roadHelper.PlaceStreetPositions(tempPosition, Vector3Int.RoundToInt(direction), length);
                         Length -= 2;
                         positions.Add(currentPosition);
                         break;
@@ -91,34 +92,10 @@ namespace ProceduralGeneration
                 }
             }
 
-            foreach (var position in positions)
-            {
-                Instantiate(prefab, position, Quaternion.identity);
-            }
-        }
-
-        private void DrawLine(Vector3 start, Vector3 end, Color color)
-        {
-            GameObject line = new GameObject("line");
-            line.transform.position = start;
-            var lineRenderer = line.AddComponent<LineRenderer>();
-            lineRenderer.material = lineMaterial;
-            lineRenderer.startColor = color;
-            lineRenderer.endColor = color;
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
-            lineRenderer.SetPosition(0, start);
-            lineRenderer.SetPosition(1, end);
-        }
-
-        public enum EncodingLetters
-        {
-            unknown = '1',
-            save = '[',
-            load = ']',
-            draw = 'F',
-            turnRight = '+',
-            turnLeft = '-'
+            //foreach (var position in positions)
+            //{
+            //    Instantiate(prefab, position, Quaternion.identity);
+            //}
         }
     }
 }
