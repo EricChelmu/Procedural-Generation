@@ -2,31 +2,109 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadHelper : MonoBehaviour
+namespace ProceduralGeneration
 {
-    public GameObject roadStraight, roadCorner, road3Way, road4Way, roadEnd;
-    Dictionary<Vector3Int, GameObject> roadDictionary = new Dictionary<Vector3Int, GameObject>();
-    HashSet<Vector3Int> fixRoadCandidates = new HashSet<Vector3Int>();
-
-    public void PlaceStreetPositions(Vector3 startPosition, Vector3Int direction, int length)
+    public class RoadHelper : MonoBehaviour
     {
-        var rotation = Quaternion.Euler(-90, 0, 0);
-        if (direction.x == 0)
+        public GameObject roadStraight, roadCorner, road3Way, road4Way, roadEnd;
+        Dictionary<Vector3Int, GameObject> roadDictionary = new Dictionary<Vector3Int, GameObject>();
+        HashSet<Vector3Int> fixRoadCandidates = new HashSet<Vector3Int>();
+
+        public void PlaceStreetPositions(Vector3 startPosition, Vector3Int direction, int length)
         {
-            rotation = Quaternion.Euler(-90, 90, 0);
-        }
-        for (int i = 0; i < length; i++)
-        {
-            var position = Vector3Int.RoundToInt(startPosition + direction * i);
-            if (roadDictionary.ContainsKey(position))
+            var rotation = Quaternion.Euler(-90, 0, 0);
+            if (direction.x == 0)
             {
-                continue;
+                rotation = Quaternion.Euler(-90, 90, 0);
             }
-            var road = Instantiate(roadStraight, position, rotation, transform);
-            roadDictionary.Add(position, road);
-            if (i == 0 || i == length-1)
+            for (int i = 0; i < length; i++)
             {
-                fixRoadCandidates.Add(position);
+                var position = Vector3Int.RoundToInt(startPosition + direction * i);
+                if (roadDictionary.ContainsKey(position))
+                {
+                    continue;
+                }
+                var road = Instantiate(roadStraight, position, rotation, transform);
+                roadDictionary.Add(position, road);
+                if (i == 0 || i == length - 1)
+                {
+                    fixRoadCandidates.Add(position);
+                }
+            }
+        }
+
+        public void FixRoad()
+        {
+            foreach (var position in fixRoadCandidates)
+            {
+                List<Direction> neighbourDirections = PlacementHelper.FindNeighbour(position, roadDictionary.Keys);
+
+                Quaternion rotation = Quaternion.Euler(-90, 0, 0);
+
+                if (neighbourDirections.Count == 1)
+                {
+                    Destroy(roadDictionary[position]);
+                    if (neighbourDirections.Contains(Direction.Down))
+                    {
+                        rotation = Quaternion.Euler(-90, 90, 0);
+                    }
+                    else if (neighbourDirections.Contains(Direction.Left))
+                    {
+                        rotation = Quaternion.Euler(-90, 180, 0);
+                    }
+                    else if (neighbourDirections.Contains(Direction.Up))
+                    {
+                        rotation = Quaternion.Euler(-90, 270, 0);
+                    }
+                    roadDictionary[position] = Instantiate(roadEnd, position, rotation, transform);
+                }
+                else if (neighbourDirections.Count == 2)
+                {
+                    if (neighbourDirections.Contains(Direction.Up) && neighbourDirections.Contains(Direction.Down)
+                        || neighbourDirections.Contains(Direction.Left) && neighbourDirections.Contains(Direction.Right)) continue;
+                    Destroy(roadDictionary[position]);
+                    if (neighbourDirections.Contains(Direction.Up) && neighbourDirections.Contains(Direction.Right))
+                    {
+                        rotation = Quaternion.Euler(-90, 90, 0);
+                    }
+                    else if (neighbourDirections.Contains(Direction.Right) && neighbourDirections.Contains(Direction.Down))
+                    {
+                        rotation = Quaternion.Euler(-90, 180, 0);
+                    }
+                    else if (neighbourDirections.Contains(Direction.Down) && neighbourDirections.Contains(Direction.Left))
+                    {
+                        rotation = Quaternion.Euler(-90, 270, 0);
+                    }
+                    roadDictionary[position] = Instantiate(roadCorner, position, rotation, transform);
+                }
+                else if (neighbourDirections.Count == 3)
+                {
+                    Destroy(roadDictionary[position]);
+                    if (neighbourDirections.Contains(Direction.Right) 
+                        && neighbourDirections.Contains(Direction.Down) 
+                        && neighbourDirections.Contains(Direction.Left))
+                    {
+                        rotation = Quaternion.Euler(-90, 90, 0);
+                    }
+                    else if (neighbourDirections.Contains(Direction.Down) 
+                        && neighbourDirections.Contains(Direction.Left) 
+                        && neighbourDirections.Contains(Direction.Up))
+                    {
+                        rotation = Quaternion.Euler(-90, 180, 0);
+                    }
+                    else if (neighbourDirections.Contains(Direction.Left) 
+                        && neighbourDirections.Contains(Direction.Up) 
+                        && neighbourDirections.Contains(Direction.Right))
+                    {
+                        rotation = Quaternion.Euler(-90, 270, 0);
+                    }
+                    roadDictionary[position] = Instantiate(road3Way, position, rotation, transform);
+                }   
+                else
+                {
+                    Destroy(roadDictionary[position]);
+                    roadDictionary[position] = Instantiate(road4Way, position, rotation, transform);
+                }
             }
         }
     }

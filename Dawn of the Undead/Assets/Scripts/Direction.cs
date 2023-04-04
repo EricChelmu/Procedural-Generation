@@ -4,8 +4,11 @@ using UnityEngine;
 
 namespace ProceduralGeneration
 {
-    public class Direction : MonoBehaviour
+    public enum Direction
     {
-
+        Up,
+        Down,
+        Left,
+        Right
     }
 }

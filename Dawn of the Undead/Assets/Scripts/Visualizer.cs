@@ -91,11 +91,7 @@ namespace ProceduralGeneration
                         break;
                 }
             }
-
-            //foreach (var position in positions)
-            //{
-            //    Instantiate(prefab, position, Quaternion.identity);
-            //}
+            roadHelper.FixRoad();
         }
     }
 }
