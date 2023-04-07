@@ -13,9 +13,27 @@ namespace ProceduralGeneration
         public void PlaceStructuresAroundRoad(List<Vector3Int> roadPositions)
         {
             Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpacesAroundRoad(roadPositions);
-            foreach (var position in freeEstateSpots.Keys)
+            foreach (var freeSpot in freeEstateSpots)
             {
-                Instantiate(prefab, position, Quaternion.Euler(-90,0,0), transform);
+                var rotation = Quaternion.Euler(-90, 0, -90);
+                switch (freeSpot.Value)
+                {
+                    case Direction.Up:
+                        rotation = Quaternion.Euler(-90, -90, 0);
+                        break;
+                    case Direction.Down:
+                        rotation = Quaternion.Euler(-90, 90, 0);
+                        break;
+                    case Direction.Left:
+                        rotation = Quaternion.Euler(-90, 180, 0);
+                        break;
+                    case Direction.Right:
+                        rotation = Quaternion.Euler(-90, 0, 0);
+                        break;
+                    default:
+                        break;
+                }
+                Instantiate(prefab, freeSpot.Key, rotation, transform);
             }
         }
 
@@ -31,7 +49,7 @@ namespace ProceduralGeneration
                     {
                         var newPosition = position + PlacementHelper.GetOffsetFromDirection(direction);
                         if (freeSpaces.ContainsKey(newPosition)) continue;
-                        freeSpaces.Add(newPosition, Direction.Right);
+                        freeSpaces.Add(newPosition, PlacementHelper.GetReverseDirection(direction));
                     }
                 }
             }
