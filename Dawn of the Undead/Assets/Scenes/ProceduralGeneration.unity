@@ -571,7 +571,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7090dc001951744955897210d972cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1850802540139764161, guid: efe788760ece4264db4a5f62b1f0adbc, type: 3}
+  buildingTypes:
+  - prefabs:
+    - {fileID: 919132149155446097, guid: 5399752e30fbcd144865e34b406fc11f, type: 3}
+    sizeRequired: 2
+    quantity: 3
+    quantityAlreadyPlaced: 0
+  - prefabs:
+    - {fileID: 919132149155446097, guid: 7ab521cf64cbcb6478cbddeb7e897633, type: 3}
+    sizeRequired: 2
+    quantity: 2
+    quantityAlreadyPlaced: 0
+  - prefabs:
+    - {fileID: 919132149155446097, guid: 14858425e564026408f10390b0b9a14f, type: 3}
+    - {fileID: 919132149155446097, guid: 2559f7b73a62a6f458a402b675d2c04a, type: 3}
+    sizeRequired: 1
+    quantity: 5
+    quantityAlreadyPlaced: 0
+  - prefabs:
+    - {fileID: 919132149155446097, guid: e25f14be92012d143b611d586187e933, type: 3}
+    - {fileID: 919132149155446097, guid: 026456becc0de0842a4b1d16130b681d, type: 3}
+    sizeRequired: 1
+    quantity: -1
+    quantityAlreadyPlaced: 0
 --- !u!4 &1711406837
 Transform:
   m_ObjectHideFlags: 0
