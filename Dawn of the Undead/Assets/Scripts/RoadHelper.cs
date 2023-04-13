@@ -112,5 +112,15 @@ namespace ProceduralGeneration
                 }
             }
         }
+
+        public void Reset()
+        {
+            foreach (var road in roadDictionary.Values)
+            {
+                Destroy(road);
+            }
+            roadDictionary.Clear();
+            fixRoadCandidates = new HashSet<Vector3Int>();
+        }
     }
 }

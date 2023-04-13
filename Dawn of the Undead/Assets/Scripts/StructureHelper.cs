@@ -8,7 +8,14 @@ namespace ProceduralGeneration
     public class StructureHelper : MonoBehaviour
     {
         public BuildingType[] buildingTypes;
+        public GameObject[] naturePrefabs;
+        public bool randomNaturePlacement = false;
+        [Range(0,1)]
+        public float randomNaturePlacementThreshold = 0.3f;
         public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>();
+        public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>();
+
+
 
         public void PlaceStructuresAroundRoad(List<Vector3Int> roadPositions)
         {
@@ -42,6 +49,16 @@ namespace ProceduralGeneration
                 {
                     if (buildingTypes[i].quantity == -1)
                     {
+                        if (randomNaturePlacement)
+                        {
+                            var random = UnityEngine.Random.value;
+                            if (random < randomNaturePlacementThreshold)
+                            {
+                                var nature = SpawnPrefab(naturePrefabs[UnityEngine.Random.Range(0,naturePrefabs.Length)], freeSpot.Key, rotation);
+                                natureDictionary.Add(freeSpot.Key, nature);
+                                break;
+                            }
+                        }
                         var building = SpawnPrefab(buildingTypes[i].GetPrefab(), freeSpot.Key, rotation);
                         structuresDictionary.Add(freeSpot.Key, building);
                         break;
@@ -128,6 +145,24 @@ namespace ProceduralGeneration
         {
             var newStructure = Instantiate(prefab, position, rotation, transform);
             return newStructure;
+        }
+
+        public void Reset()
+        {
+            foreach (var building in structuresDictionary.Values)
+            {
+                Destroy(building);
+            }
+            structuresDictionary.Clear();
+            foreach (var tree in natureDictionary.Values)
+            {
+                Destroy(tree);
+            }
+            natureDictionary.Clear();
+            foreach (var buildingType in buildingTypes)
+            {
+                buildingType.Reset();
+            }
         }
     }
 }
