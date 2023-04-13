@@ -155,7 +155,7 @@ MonoBehaviour:
   lsystem: {fileID: 1851779731}
   roadHelper: {fileID: 1634943965}
   structureHelper: {fileID: 1711406836}
-  roadLength: 8
+  roadLength: 14
 --- !u!4 &122888621
 Transform:
   m_ObjectHideFlags: 0
@@ -965,20 +965,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypes:
   - prefabs:
+    - {fileID: 919132149155446097, guid: 82e962baee797f047b96a95ca9e970d2, type: 3}
+    - {fileID: 919132149155446097, guid: 422d317601f23184e8cb7cd3619a5007, type: 3}
+    - {fileID: 919132149155446097, guid: facde89a9d4970946ad670eea2d5e5bf, type: 3}
+    - {fileID: 919132149155446097, guid: 2d2abc79c6ecdc64290856ce8de1a956, type: 3}
     - {fileID: 919132149155446097, guid: 5399752e30fbcd144865e34b406fc11f, type: 3}
-    sizeRequired: 2
-    quantity: 1
-    quantityAlreadyPlaced: 0
-  - prefabs:
-    - {fileID: 919132149155446097, guid: 7ab521cf64cbcb6478cbddeb7e897633, type: 3}
-    sizeRequired: 2
-    quantity: 1
-    quantityAlreadyPlaced: 0
-  - prefabs:
     - {fileID: 919132149155446097, guid: 14858425e564026408f10390b0b9a14f, type: 3}
+    - {fileID: 919132149155446097, guid: 1a7b960b97cb5694a92868fed9241671, type: 3}
     - {fileID: 919132149155446097, guid: 2559f7b73a62a6f458a402b675d2c04a, type: 3}
-    sizeRequired: 1
-    quantity: 5
+    - {fileID: 919132149155446097, guid: 7ab521cf64cbcb6478cbddeb7e897633, type: 3}
+    - {fileID: 919132149155446097, guid: 117fefd9c43496a48b7cbccb3cd9aaef, type: 3}
+    - {fileID: 919132149155446097, guid: 4eb41ffb03a39294ba99d659d6218b56, type: 3}
+    - {fileID: 919132149155446097, guid: f1604c5d2c95fc044a054326401a3f64, type: 3}
+    sizeRequired: 2
+    quantity: 20
     quantityAlreadyPlaced: 0
   - prefabs:
     - {fileID: 919132149155446097, guid: e25f14be92012d143b611d586187e933, type: 3}
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 68c31856c21f99d49ba9b878476d89af, type: 2}
   rootSentence: '[F]--F'
-  iterationLimit: 2
+  iterationLimit: 4
   randomIgnoreRuleModifier: 1
   chanceToIgnoreRule: 0.3
 --- !u!4 &1851779732
