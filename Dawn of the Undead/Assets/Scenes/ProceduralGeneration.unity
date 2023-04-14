@@ -156,6 +156,7 @@ MonoBehaviour:
   roadHelper: {fileID: 1634943965}
   structureHelper: {fileID: 1711406836}
   roadLength: 14
+  angle: 90
 --- !u!4 &122888621
 Transform:
   m_ObjectHideFlags: 0
@@ -1060,7 +1061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rules:
   - {fileID: 11400000, guid: 68c31856c21f99d49ba9b878476d89af, type: 2}
-  rootSentence: '[F]--F'
+  rootSentence: '[F]--F[F]+F[F]-F'
   iterationLimit: 4
   randomIgnoreRuleModifier: 1
   chanceToIgnoreRule: 0.3
@@ -1078,4 +1079,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1945370183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945370185}
+  - component: {fileID: 1945370184}
+  m_Layer: 0
+  m_Name: SimpleVisualizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1945370184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945370183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7938621a25ca59f4ea88e4f8701d9411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lsystem: {fileID: 1851779731}
+  prefab: {fileID: 5054356181449942831, guid: c0fae465f34b3334f9dd4750e96606f2, type: 3}
+  lineMaterial: {fileID: 2100000, guid: 2f4c0154fb70b3648a8ebbc0d08d0ac3, type: 2}
+  angle: 90
+--- !u!4 &1945370185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945370183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.405964, y: 28.57662, z: 56.33312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

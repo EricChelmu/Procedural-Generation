@@ -13,6 +13,7 @@ namespace ProceduralGeneration
         public Material lineMaterial;
 
         private int length = 8;
+        [SerializeField]
         private float angle = 90;
 
         public int Length 

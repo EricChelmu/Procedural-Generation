@@ -14,7 +14,8 @@ namespace ProceduralGeneration
         public StructureHelper structureHelper;
         public int roadLength = 8;
         private int length = 8;
-        private float angle = 90;
+        [SerializeField]
+        private float angle = 60;
 
         public int Length
         {
