@@ -28,6 +28,7 @@ namespace ProceduralGeneration
             texture.SetPixels(colourMap);
             texture.Apply();
 
+            //textureRender.sharedMaterial.SetTexture("_MainTex", texture);
             textureRender.sharedMaterial.mainTexture = texture;
             textureRender.transform.localScale = new Vector3(width, 1, height);
         }
