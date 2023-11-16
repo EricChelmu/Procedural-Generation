@@ -6,6 +6,7 @@ namespace ProceduralGeneration
 {
     public class MapDisplay : MonoBehaviour
     {
+
         public Renderer textureRender;
         public MeshFilter meshFilter;
         public MeshRenderer meshRenderer;
@@ -21,5 +22,6 @@ namespace ProceduralGeneration
             meshFilter.sharedMesh = meshData.CreateMesh();
             meshRenderer.sharedMaterial.mainTexture = texture;
         }
+
     }
 }

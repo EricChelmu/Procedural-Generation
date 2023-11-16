@@ -47,6 +47,7 @@ namespace ProceduralGeneration
             VisualizeSequence(sequence);
         }
 
+        //generate the city based on the base sentence
         private void VisualizeSequence(string sequence)
         {
             Stack<AgentParameters> savePoints = new Stack<AgentParameters>();

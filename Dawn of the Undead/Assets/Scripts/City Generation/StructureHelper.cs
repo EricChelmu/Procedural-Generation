@@ -16,7 +16,7 @@ namespace ProceduralGeneration
         public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>();
 
 
-
+        //place the buildings around the roads
         public void PlaceStructuresAroundRoad(List<Vector3Int> roadPositions)
         {
             Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpacesAroundRoad(roadPositions);
@@ -28,6 +28,8 @@ namespace ProceduralGeneration
                     continue;
                 }
                 var rotation = Quaternion.identity;
+
+                //check the correct rotation of the building
                 switch (freeSpot.Value)
                 {
                     case Direction.Up:
@@ -45,6 +47,8 @@ namespace ProceduralGeneration
                     default:
                         break;
                 }
+
+                //place the building prefabs randomly, surrounding the roads
                 for (int i = 0; i < buildingTypes.Length; i++)
                 {
                     if (buildingTypes[i].quantity == -1)
@@ -92,6 +96,7 @@ namespace ProceduralGeneration
             }
         }
 
+        //locate free spaces around road
         private Dictionary<Vector3Int, Direction> FindFreeSpacesAroundRoad(List<Vector3Int> roadPositions)
         {
             Dictionary<Vector3Int, Direction> freeSpaces = new Dictionary<Vector3Int, Direction>();

@@ -7,6 +7,7 @@ namespace ProceduralGeneration
 {
     public static class PlacementHelper
     {
+        //check for neighbouring nodes
         public static List<Direction> FindNeighbour(Vector3Int position, ICollection<Vector3Int> collection)
         {
             List<Direction> neighbourDirections = new List<Direction>();

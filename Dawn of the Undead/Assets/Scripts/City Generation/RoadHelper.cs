@@ -11,10 +11,13 @@ namespace ProceduralGeneration
         Dictionary<Vector3Int, GameObject> roadDictionary = new Dictionary<Vector3Int, GameObject>();
         HashSet<Vector3Int> fixRoadCandidates = new HashSet<Vector3Int>();
 
+        //get the node positions
         public List<Vector3Int> GetRoadPositions()
         {
             return roadDictionary.Keys.ToList();
         }
+
+        //place roads on the node positions
         public void PlaceStreetPositions(Vector3 startPosition, Vector3Int direction, int length)
         {
             var rotation = Quaternion.Euler(-90, 0, 0);
@@ -38,6 +41,7 @@ namespace ProceduralGeneration
             }
         }
 
+        //fix the rotation and which type of road to place(3way, turn, 4way)
         public void FixRoad()
         {
             foreach (var position in fixRoadCandidates)
